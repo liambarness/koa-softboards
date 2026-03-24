@@ -1,0 +1,79 @@
+---
+const navLinks = [
+  { label: 'Shop', href: 'https://konasurfco.com/collections/koa-softboards', style: 'btn-secondary' },
+  { label: 'About', href: '/', style: 'btn-neutral' },
+  { label: 'Contact', href: 'https://konasurfco.com/pages/contact', style: 'btn-neutral' },
+  { label: 'Cart', href: '/', style: 'btn-neutral' },
+];
+---
+
+<nav class="p-4 sm:p-5">
+  <div class="flex items-center justify-between w-full gap-6 mx-auto max-w-7xl">
+    <a class="flex items-center" href="/">
+      <img
+        src="/images/logo.webp"
+        alt="Ko'a Softboards"
+        loading="lazy"
+        decoding="async"
+        width="300"
+        height="150"
+      />
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-6">
+      {navLinks.map((link) => (
+        <li>
+          <a class={`btn ${link.style} px-4 py-3 h-auto min-h-0`} href={link.href}>
+            <span>{link.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile nav -->
+    <div class="relative lg:hidden">
+      <button
+        class="inline-flex justify-center items-center w-10 h-10 relative z-2 nav-toggle"
+        aria-label="Open Menu"
+        aria-expanded="false"
+        aria-controls="nav-panel"
+      >
+        <span class="nav-toggle-icon"></span>
+      </button>
+      <div
+        id="nav-panel"
+        class="nav-panel absolute rounded-box -top-2 -right-2 z-1 shadow-xl bg-base-100 border border-base-200/70"
+      >
+        <ul class="flex flex-col px-4 pb-6 pt-14">
+          {navLinks.map((link) => (
+            <li>
+              <a class={`btn ${link.style} w-full px-4 py-3.5 h-auto min-h-0`} href={link.href}>
+                <span>{link.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initNav() {
+    const panel = document.querySelector('.nav-panel');
+    const toggle = document.querySelector('.nav-toggle');
+    const icon = document.querySelector('.nav-toggle-icon');
+
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      toggle.setAttribute('aria-label', expanded ? 'Open Menu' : 'Close Menu');
+      icon?.classList.toggle('is-active');
+      panel?.classList.toggle('is-visible');
+    });
+  }
+
+  initNav();
+  document.addEventListener('astro:after-swap', initNav);
+</script>

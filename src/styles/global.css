@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Custom dark theme matching original site */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-base-100: #171227;
+  --color-base-200: #2e293c;
+  --color-base-300: oklch(21.15% 0.012 254.09);
+  --color-base-content: #fff;
+  --color-primary: #ffae9c;
+  --color-primary-content: #171227;
+  --color-secondary: #fff2d7;
+  --color-secondary-content: #171227;
+  --color-accent: #e3f1ff;
+  --color-accent-content: #171227;
+  --color-neutral: #2e293c;
+  --color-neutral-content: #fff;
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Nav panel (mobile menu) */
+.nav-panel {
+  visibility: hidden;
+  max-width: 18rem;
+  transform-origin: 100% 0;
+  scale: 90% 90%;
+  opacity: 0;
+  width: calc(100vw - 1rem);
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s 0.25s;
+}
+
+.nav-panel.is-visible {
+  visibility: visible;
+  scale: 100% 100%;
+  opacity: 1;
+  transition: all 0.25s;
+}
+
+.nav-panel li + li:has(.btn),
+.nav-panel li:has(.btn) + li {
+  margin-top: 1rem;
+}
+
+/* Hamburger icon */
+.nav-toggle-icon {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: currentColor;
+  border-radius: 0.25rem;
+  width: 1.5rem;
+  height: 0.125rem;
+  display: block;
+  position: relative;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  content: "";
+  background-color: currentColor;
+  border-radius: 0.25rem;
+  width: 1.5rem;
+  height: 0.125rem;
+  display: block;
+  position: absolute;
+}
+
+.nav-toggle-icon::before {
+  top: -0.5rem;
+}
+
+.nav-toggle-icon::after {
+  top: 0.5rem;
+}
+
+.nav-toggle-icon.is-active {
+  background-color: transparent;
+}
+
+.nav-toggle-icon.is-active::before {
+  top: 0;
+  transform: translateY(0) rotate(-45deg);
+}
+
+.nav-toggle-icon.is-active::after {
+  top: 0;
+  transform: translateY(0) rotate(45deg);
+}
+
+/* Logo strip animation */
+.logo-strip {
+  min-width: 160rem;
+}
+
+.logo-strip-items {
+  min-width: 80rem;
+}
+
+.logo-strip-slide-right {
+  animation: slideRight var(--logo-slide-speed, 80s) linear infinite;
+}
+
+.logo-strip-slide-left {
+  animation: slideLeft var(--logo-slide-speed, 80s) linear infinite;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateZ(0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+/* Markdown prose styling */
+.markdown hr {
+  border-color: currentColor;
+  opacity: 0.3;
+  margin: 0;
+}
+
+.markdown h1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+}
