@@ -4,10 +4,53 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title = "KO'A Softboards | Company", description = "" } = Astro.props;
+const {
+  title = "KO'A Softboards | Eco-Friendly Surfboards & Bodyboards",
+  description = "KO'A Softboards makes high-performance soft-top surfboards and bodyboards. Every board sold funds coral reef restoration to protect coastlines and ocean ecosystems.",
+  ogImage = "/images/og-default.jpg"
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+
+// Organization JSON-LD structured data
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KO'A Softboards",
+  "alternateName": ["Koa Softboards", "KOA Softboards"],
+  "url": "https://koasoftboards.netlify.app",
+  "logo": new URL("/images/logo.webp", Astro.site).toString(),
+  "description": description,
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "Kona Surf Co",
+    "url": "https://konasurfco.com"
+  },
+  "sameAs": [
+    "https://konasurfco.com/collections/koa-softboards"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://konasurfco.com/pages/contact",
+    "contactType": "customer service"
+  }
+};
+
+// WebSite JSON-LD structured data
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "KO'A Softboards",
+  "url": "https://koasoftboards.netlify.app",
+  "description": description,
+  "publisher": {
+    "@type": "Organization",
+    "name": "KO'A Softboards"
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -31,17 +74,32 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
 
     <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KO'A Softboards" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageURL} />
+
+    <!-- AI & LLM Discoverability -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site information" />
+
+    <!-- Hero image preload for LCP -->
+    <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
   </head>
   <body class="antialiased" style="font-family: 'Mulish', sans-serif;">
     <slot />
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>

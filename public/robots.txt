@@ -1,0 +1,70 @@
+# KO'A Softboards - Crawler Directives
+# https://koasoftboards.netlify.app
+
+# ===========================================
+# AI Search Crawlers - ALLOWED
+# These crawlers power AI search features
+# that drive discovery and citations.
+# ===========================================
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ===========================================
+# Traditional Search Crawlers - ALLOWED
+# ===========================================
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# ===========================================
+# Training-Only Crawlers - BLOCKED
+# These crawlers scrape for model training
+# but do not drive search citations.
+# ===========================================
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# ===========================================
+# Default - Allow all other crawlers
+# ===========================================
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://koasoftboards.netlify.app/sitemap-index.xml
+
+# LLMs.txt
+# See https://koasoftboards.netlify.app/llms.txt for AI-readable site summary

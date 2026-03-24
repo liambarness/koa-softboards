@@ -12,7 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
     "@tailwindcss/vite": "^4.2.2",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^6.0.8",
     "daisyui": "^5.5.19",
     "tailwindcss": "^4.2.2"

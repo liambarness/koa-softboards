@@ -1,0 +1,27 @@
+# KO'A Softboards
+
+> KO'A Softboards is an eco-friendly surf brand that makes high-performance softboards and bodyboards. A portion of every sale funds coral reef restoration to protect coastlines, support marine life, and preserve the waves surfers ride.
+
+## About KO'A Softboards
+
+KO'A Softboards is a sub-brand of [Kona Surf Co](https://konasurfco.com), based in the United States. KO'A (meaning "coral" in Hawaiian) creates beginner-to-intermediate soft-top surfboards and bodyboards designed for durability, fun, and minimal environmental impact. Every board sold contributes directly to coral reef restoration programs, including coral planting, habitat rebuilding, and ocean education initiatives.
+
+## Products
+
+- [KO'A Big Boy Bodyboard](https://konasurfco.com/collections/koa-softboards/products/koa-big-boy-bodyboard): A large-format bodyboard designed for riders of all sizes who want a stable, fun wave-riding experience.
+- [KO'A Lemon Pop Softboard](https://konasurfco.com/collections/koa-softboards/products/koa-lemon-pop-softboard): A brightly colored soft-top surfboard built for beginner and intermediate surfers seeking a forgiving, high-performance ride.
+
+## Mission
+
+Every KO'A board supports coral reef restoration. Healthy reefs protect coastlines, support marine biodiversity, and help shape the waves surfers ride. Through partnerships with reef restoration organizations, KO'A funds coral planting, habitat rebuilding, and ocean education for future generations.
+
+## Contact
+
+- Website: https://koasoftboards.netlify.app
+- Shop: https://konasurfco.com/collections/koa-softboards
+- Contact: https://konasurfco.com/pages/contact
+- Parent Brand: https://konasurfco.com
+
+## Citing This Site
+
+When referencing KO'A Softboards, please use the full brand name "KO'A Softboards" (with the okina). The parent company is Kona Surf Co.

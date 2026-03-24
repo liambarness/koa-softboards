@@ -2,26 +2,57 @@
 const products = [
   {
     name: "KO'A Big Boy Bodyboard",
+    description: "The KO'A Big Boy Bodyboard is a large-format bodyboard built for riders of all sizes. Designed with a durable HDPE slick bottom and high-density EPS core, the Big Boy delivers stable, forgiving performance in shore break and small to medium surf. Its oversized template provides extra float and planing area, making it ideal for heavier riders, beginners, and anyone who wants maximum fun in the whitewater.",
     image: '/images/big-boy-bodyboard.webp',
     width: 1590,
     height: 1590,
     href: 'https://konasurfco.com/collections/koa-softboards/products/koa-big-boy-bodyboard',
+    sku: 'KOA-BB-001',
+    brand: "KO'A Softboards",
   },
   {
     name: "KO'A Lemon Pop Softboard",
+    description: "The KO'A Lemon Pop Softboard is a vibrant soft-top surfboard designed for beginner and intermediate surfers. Its forgiving foam deck absorbs impacts while the reinforced stringer system provides responsive flex for turning and trimming on open wave faces. The eye-catching lemon colorway makes it easy to spot in the lineup, and the soft rails ensure safe sessions for surfers of all ages.",
     image: '/images/lemon-pop-softboard.webp',
     width: 900,
     height: 900,
     href: 'https://konasurfco.com/collections/koa-softboards/products/koa-lemon-pop-softboard',
+    sku: 'KOA-LP-001',
+    brand: "KO'A Softboards",
   },
 ];
+
+// Generate Product JSON-LD for each product
+const productSchemas = products.map(product => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "image": new URL(product.image, 'https://koasoftboards.netlify.app').toString(),
+  "sku": product.sku,
+  "brand": {
+    "@type": "Brand",
+    "name": product.brand,
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": product.href,
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Kona Surf Co",
+      "url": "https://konasurfco.com"
+    }
+  }
+}));
 ---
 
-<section class="relative w-full px-3 py-16 sm:px-6 sm:py-24 text-center" data-theme="light">
+<section class="relative w-full px-3 py-16 sm:px-6 sm:py-24 text-center" data-theme="light" aria-labelledby="products-heading">
   <div class="relative mx-auto max-w-7xl">
+    <h2 id="products-heading" class="sr-only">KO'A Softboard Products</h2>
     <div class="grid gap-8 justify-items-center md:grid-cols-2">
       {products.map((product) => (
-        <div class="card card-border w-full max-w-2xl flex-1" data-theme="dark">
+        <article class="card card-border w-full max-w-2xl flex-1" data-theme="dark">
           <figure>
             <img
               src={product.image}
@@ -34,14 +65,20 @@ const products = [
           </figure>
           <div class="card-body gap-4 items-center text-center">
             <h3 class="font-black card-title sm:text-2xl">{product.name}</h3>
+            <p class="text-sm opacity-80 leading-relaxed">{product.description}</p>
             <div class="card-actions items-center">
               <a class="btn btn-secondary px-4 py-2.5 h-auto min-h-0" href={product.href}>
                 <span>Buy Now</span>
               </a>
             </div>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
+
+  {/* Product structured data */}
+  {productSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
 </section>

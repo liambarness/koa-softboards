@@ -1,0 +1,134 @@
+---
+/**
+ * SchemaMarkup.astro
+ * Complete JSON-LD structured data for KO'A Softboards.
+ * Drop <SchemaMarkup /> into the <head> of Layout.astro.
+ *
+ * Schema blocks:
+ *   1. Organization  — brand entity + parent company link
+ *   2. WebSite       — site-level identity
+ *   3. WebPage       — homepage description
+ *   4. Product       — KO'A Big Boy Bodyboard
+ *   5. Product       — KO'A Lemon Pop Softboard
+ */
+
+const siteUrl = 'https://koasoftboards.netlify.app';
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "KO'A Softboards",
+  "legalName": "Ko'a Softboards LLC",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/images/logo.webp`,
+    "width": 300,
+    "height": 150
+  },
+  "image": `${siteUrl}/images/banner.webp`,
+  "description": "KO'A Softboards is a surf brand dedicated to coral reef restoration. A portion of every board sold goes directly toward rebuilding ocean ecosystems.",
+  "foundingDate": "2024",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "Kona Surf Co.",
+    "url": "https://konasurfco.com"
+  },
+  "sameAs": [
+    "https://konasurfco.com/collections/koa-softboards"
+  ]
+};
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "name": "KO'A Softboards",
+  "url": siteUrl,
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "inLanguage": "en-US"
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${siteUrl}/#webpage`,
+  "url": siteUrl,
+  "name": "KO'A Softboards | Company",
+  "description": "Ride More Waves. Protect what matters. Every KO'A board supports coral reef restoration -- helping rebuild the ecosystems that make surfing possible.",
+  "isPartOf": {
+    "@id": `${siteUrl}/#website`
+  },
+  "about": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "inLanguage": "en-US",
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/images/hero-bg.png`
+  }
+};
+
+const bigBoyProduct = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${siteUrl}/#product-big-boy-bodyboard`,
+  "name": "KO'A Big Boy Bodyboard",
+  "image": `${siteUrl}/images/big-boy-bodyboard.webp`,
+  "description": "The KO'A Big Boy Bodyboard -- a softboard built for riding more waves while supporting coral reef restoration with every purchase.",
+  "brand": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "manufacturer": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "category": "Bodyboards",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://konasurfco.com/collections/koa-softboards/products/koa-big-boy-bodyboard",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD",
+    "seller": {
+      "@type": "Organization",
+      "name": "Kona Surf Co.",
+      "url": "https://konasurfco.com"
+    }
+  }
+};
+
+const lemonPopProduct = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${siteUrl}/#product-lemon-pop-softboard`,
+  "name": "KO'A Lemon Pop Softboard",
+  "image": `${siteUrl}/images/lemon-pop-softboard.webp`,
+  "description": "The KO'A Lemon Pop Softboard -- a vibrant soft-top surfboard for all levels, supporting coral reef restoration with every purchase.",
+  "brand": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "manufacturer": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "category": "Softboards",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://konasurfco.com/collections/koa-softboards/products/koa-lemon-pop-softboard",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD",
+    "seller": {
+      "@type": "Organization",
+      "name": "Kona Surf Co.",
+      "url": "https://konasurfco.com"
+    }
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(bigBoyProduct)} />
+<script type="application/ld+json" set:html={JSON.stringify(lemonPopProduct)} />
